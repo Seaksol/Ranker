@@ -66,11 +66,18 @@ public class Ranker implements CommandExecutor {
                     commandSender.sendMessage(Utils.color("&6------------------"));
                 }
                 else {
-                    main.getRankConfig().set(strings[1] + "-rank", strings[2]);
-                    commandSender.sendMessage(Utils.color("&6------------------"));
-                    commandSender.sendMessage(Utils.color
-                            ("&2&l%player% 的 Rank 设置被成功地更改了").replace("%player%", strings[1]));
-                    commandSender.sendMessage(Utils.color("&6------------------"));
+                    if(strings[2].contains("$") || strings[2].contains("%")) {
+                        commandSender.sendMessage(Utils.color("&6------------------"));
+                        commandSender.sendMessage(Utils.color("&4&l称号名内含有非法字符"));
+                        commandSender.sendMessage(Utils.color("&6------------------"));
+                    }
+                    else {
+                        main.getRankConfig().set(strings[1] + "-rank", strings[2]);
+                        commandSender.sendMessage(Utils.color("&6------------------"));
+                        commandSender.sendMessage(Utils.color
+                                ("&2&l%player% 的 Rank 设置被成功地更改了").replace("%player%", strings[1]));
+                        commandSender.sendMessage(Utils.color("&6------------------"));
+                    }
                 }
             }
 

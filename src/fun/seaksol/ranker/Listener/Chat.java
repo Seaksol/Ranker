@@ -13,10 +13,24 @@ public class Chat implements Listener {
     @EventHandler
     public boolean onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if(main.getRankConfig().getString(player.getName() + "-rank") != null) {
+
+        if(main.getRankConfig().getString(player.getName() + "-rank") != null &&
+                main.getColorConfig().getString(player.getName() + "-msg") != null) {
             String rank = Utils.color(main.getRankConfig().getString(player.getName() + "-rank"));
+            String color = main.getColorConfig().getString(player.getName() + "-msg");
             event.setFormat(rank + Utils.color
-                    (" &f" + player.getName() + " : " + event.getMessage()));
+                    (" &f" + player.getName() + " : " + color +
+                            event.getMessage()));
+        }
+
+        else if(main.getRankConfig().getString(player.getName() + "-rank") != null) {
+            String rank = Utils.color(main.getRankConfig().getString(player.getName() + "-rank"));
+            event.setFormat(rank + Utils.color(" &f" + player.getName() + " : " + event.getMessage()));
+        }
+
+        else if(main.getColorConfig().getString(player.getName() + "-msg") != null) {
+            String color = main.getColorConfig().getString(player.getName() + "-msg");
+            event.setFormat(Utils.color(" &f" + player.getName() + " : " + color + event.getMessage()));
         }
 
         else {

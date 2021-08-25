@@ -1,7 +1,9 @@
 name: Ranker
-version: 1.0.0
+version: 1.0.1-SNAPSHOT
 main: fun.seaksol.ranker.Main
 author: Seaksol
 commands:
   ranker:
     usage: /ranker <Parameter> <Player> <RankName>
+  colormsg:
+    usage: /colormsg <Parameter> <Player> <Color>
