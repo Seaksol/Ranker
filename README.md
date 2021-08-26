@@ -32,7 +32,7 @@ _add, set, remove, help_
 
 _set, remove, help_
 
-  使用 `set` 参数时, 会在 *colormsg.yml* 下产生新 Path , 并设置你所输入的值, 即 **%player%-msg : '<Value>'**
+  使用 `set` 参数时, 会在 *colormsg.yml* 下产生新 Path , 并设置你所输入的值, 即 **%player%-msg : '[Value]'**
   
 ***eg. /colormsg set Seaksol &6***
   
