@@ -73,6 +73,8 @@ public class Ranker implements CommandExecutor {
                     }
                     else {
                         main.getRankConfig().set(strings[1] + "-rank", strings[2]);
+                        main.registerScoreboard(strings[1], strings[2], !main.isTeam(strings[1]));
+                        main.registerScoreboard(strings[1], strings[2], true);
                         commandSender.sendMessage(Utils.color("&6------------------"));
                         commandSender.sendMessage(Utils.color
                                 ("&2&l%player% 的 Rank 设置被成功地更改了").replace("%player%", strings[1]));
@@ -92,6 +94,7 @@ public class Ranker implements CommandExecutor {
             }
 
             else {
+                main.registerScoreboard(strings[1], strings[1], false);
                 main.getRankConfig().set(strings[1] + "-rank", null);
                 commandSender.sendMessage(Utils.color("&6------------------"));
                 commandSender.sendMessage(Utils.color

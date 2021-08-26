@@ -2,7 +2,6 @@ package fun.seaksol.ranker.Listener;
 
 import fun.seaksol.ranker.Utils.Utils;
 import fun.seaksol.ranker.Main;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,9 +12,19 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public boolean onPlayerJoin(PlayerJoinEvent event) {
-        FileConfiguration config = main.getConfig();
         Player player = event.getPlayer();
-        event.setJoinMessage(Utils.color(config.getString("join-msg")).replace("%player%", player.getName()));
+
+        if(main.getRankConfig().getString(player.getName() + "-rank") != null) {
+            String rank = Utils.color(main.getRankConfig().getString(player.getName() + "-rank"));
+            player.setPlayerListName(Utils.color(rank + "&f " + player.getName()));
+            main.registerScoreboard(player.getName(),
+                    main.getRankConfig().getString(player.getName() + "-rank"), true);
+
+        }
+
+        else
+            player.setPlayerListName(player.getName());
+
         return true;
     }
 

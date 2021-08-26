@@ -1,6 +1,6 @@
 join-msg: "&2%player% Joined!"
 quit-msg: "&2%player% Quited!"
-join-listener: false
+join-listener: true
 quit-listener: true
 # %player% 为玩家变量
 # 请在需要使用 Boolean 的地方使用 true/false

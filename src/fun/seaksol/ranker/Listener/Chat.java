@@ -21,11 +21,17 @@ public class Chat implements Listener {
             event.setFormat(rank + Utils.color
                     (" &f" + player.getName() + " : " + color +
                             event.getMessage()));
+            event.getPlayer().setPlayerListName(Utils.color(rank + "&f " + event.getPlayer().getName()));
+            main.registerScoreboard(player.getName(),
+                    main.getRankConfig().getString(player.getName() + "-rank"), true);
         }
 
         else if(main.getRankConfig().getString(player.getName() + "-rank") != null) {
             String rank = Utils.color(main.getRankConfig().getString(player.getName() + "-rank"));
             event.setFormat(rank + Utils.color(" &f" + player.getName() + " : " + event.getMessage()));
+            event.getPlayer().setPlayerListName(Utils.color(rank + "&f " + event.getPlayer().getName()));
+            main.registerScoreboard(player.getName(),
+                    main.getRankConfig().getString(player.getName() + "-rank"), true);
         }
 
         else if(main.getColorConfig().getString(player.getName() + "-msg") != null) {
@@ -36,10 +42,12 @@ public class Chat implements Listener {
         else {
             event.setFormat(Utils.color
                     (" &f" + player.getName() + " : " + event.getMessage()));
+            event.getPlayer().setPlayerListName(event.getPlayer().getName());
         }
 
         return true;
     }
+
     public Chat(Main main) {
         this.main = main;
     }
