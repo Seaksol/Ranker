@@ -11,9 +11,12 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import java.io.File;
 
+// Ranker 1.1.0, 原作者坠星 此为主类
 public class Main extends JavaPlugin {
     private FileConfiguration rankConfig;
     private FileConfiguration colorConfig;
+    private static final String ranker = "ranker";
+    private static final String colormsg = "colormsg";
 
     @Override
     public void onLoad() {
@@ -31,8 +34,9 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuit(this), this);
         getServer().getPluginManager().registerEvents(new Chat(this), this);
-        getCommand("colormsg").setExecutor(new ColorMsg(this));
-        getCommand("ranker").setExecutor(new Ranker(this));
+        getCommand(colormsg).setExecutor(new ColorMsg(this));
+        getCommand(ranker).setExecutor(new Ranker(this));
+        getCommand(ranker).setTabCompleter(new Ranker(this));
         getLogger().info("------------------");
         getLogger().info(getDescription().getFullName() + " Enabled");
         getLogger().info("------------------");

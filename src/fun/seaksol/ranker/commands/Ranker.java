@@ -1,15 +1,15 @@
 package fun.seaksol.ranker.commands;
 
 import fun.seaksol.ranker.Main;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 import fun.seaksol.ranker.Utils.Utils;
 import org.bukkit.configuration.InvalidConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Ranker implements CommandExecutor {
+public class Ranker implements TabExecutor {
     private final Main main;
 
     @Override
@@ -132,6 +132,19 @@ public class Ranker implements CommandExecutor {
         commandSender.sendMessage(Utils.color("&fTips: 本插件支持颜色代码, 使用 '&'"));
         commandSender.sendMessage(Utils.color("&e请不要在称号里添加 '%', '$' 符号"));
         commandSender.sendMessage(Utils.color("&6------------------"));
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        if(strings.length == 1) {
+            List<String> list = new ArrayList<>();
+            list.add("add");
+            list.add("set");
+            list.add("remove");
+            list.add("help");
+            return list;
+        }
+        return null;
     }
 
     public Ranker(Main main) {
